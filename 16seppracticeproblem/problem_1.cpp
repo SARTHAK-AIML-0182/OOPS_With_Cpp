@@ -1,31 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
-class Product {
+class Product{
     public:
-    int ProductId;
-        string name;
-        int price;
-        
-        Product(string n, int id, int p) {
-            ProductId = id;
-            name = n;
-            price = p;
-        }
+    int productId;
+    string productName;
+    int productPrice;
 
-        } ;
-        Product ComparePrice(const Product p, const Product q) {
-            if (p.price > q.price) {
-                return p;
-            } else {
-                return q;
-            }
+    Product(int pid, string pn,int pp){
+        productId=pid;
+        productPrice=pp;
+        productName=pn;
+    }
+    Product comparePrice(const Product &p) const{
+        if(this->productPrice > p.productPrice){
+            return *this;
+        }else{
+            return p;
         }
-        int main(){
-            Product p("Product1", 1, 100);
-            Product q("Product2", 2, 200);
-            Product expensiveProduct = ComparePrice(p, q);
-            cout << "The more expensive product is: " << expensiveProduct.name << endl;
-            cout << "The product ID is: " << expensiveProduct.ProductId << endl;
-            cout << "The product price is: " << expensiveProduct.price << endl;
-            return 0;
-        }
+    }
+};
+int main(){
+    Product p1(101,"Apple",200);
+    Product p2(102,"Banana",600);
+    Product Expensive=p1.comparePrice(p2);
+    cout<<"Product Id : "<<Expensive.productId<<endl;
+    cout<<"Product Name : "<<Expensive.productName<<endl;
+    cout<<"Product Price : "<<Expensive.productPrice;
+}

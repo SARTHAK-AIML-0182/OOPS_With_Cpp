@@ -1,33 +1,32 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-class BankAccount {
+class BankAccount{
     private:
-        string Name;
-        int accNum;
-        int balance;
-        public:
-        BankAccount(string n, int num, int b) {
-            Name = n;
-            accNum = num;
-            balance = b;
-        }
-        friend void CompareBalance(const BankAccount &a, const BankAccount &b) {
-            
+    int accountNumber;
+    string customerName;
+    int balance;
+
+    public:
+    BankAccount(int accNum, string name, int bal ){
+        accountNumber=accNum;
+        customerName=name;
+        balance=bal;
+    }
+    friend void compareBalance(const BankAccount& b1, const BankAccount& b2);
 };
-void CompareBalance(const BankAccount &a, const BankAccount &b) {
-    if (a.balance > b.balance) {
-        cout << "The account with the higher balance is: " << a.Name << endl;
-        cout << "Account Number: " << a.accNum << endl;
-        cout << "Balance: " << a.balance << endl;
-    } else {
-        cout << "The account with the higher balance is: " << b.Name << endl;
-        cout << "Account Number: " << b.accNum << endl;
-        cout << "Balance: " << b.balance << endl;
+void compareBalance(const BankAccount& b1, const BankAccount& b2){
+    if(b1.balance>b2.balance){
+        cout<<b1.customerName<<" has higher balance of "<<b1.balance<<"$\n";
+    }else if(b1.balance<b2.balance){
+        cout<<b2.customerName<<" has higher balance of "<<b2.balance<<"$\n";
+    }else{
+        cout<<"Both accounts have equal balance of "<<b1.balance<<"$\n";
     }
 }
-int main() {
-    BankAccount a("Sarthak", 12345, 5000);
-    BankAccount b("Shivam", 67890, 3000);
-    CompareBalance(a, b);
+int main(){
+    BankAccount acc1(101,"Shivam",5000);
+    BankAccount acc2(102,"Vikas",2000);
+
+    compareBalance(acc1,acc2);
     return 0;
 }
